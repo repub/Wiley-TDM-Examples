@@ -32,7 +32,7 @@ def main(args):
         filter['from-print-pub-date'] = args.frm
 
     if args.to != None:
-        filter['to-print-pub-date'] = args.to
+        filter['until-print-pub-date'] = args.to
 
     try:
         res = cr.journals(
@@ -46,7 +46,7 @@ def main(args):
             progress_bar = args.progress
         )
     except HTTPError as err:
-        print(err)
+        print(err, file = sys.stderr)
         return
          
     items = [ z['message']['items'] for z in res ]
